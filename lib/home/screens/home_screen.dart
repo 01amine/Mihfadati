@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mihfadati/screens/document_page.dart';
+import 'package:mihfadati/screens/transport_screen.dart';
 import '../cubit/bottom_navigation_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<Widget> _pages = [
     Center(child: Text("Home")),
-    Center(child: Text("Documents")),
-    const Center(child: Text('Transport')),
+    DocumentsPage(),
+    TransportScreen(),
     const Center(child: Text('Emergency')),
   ];
 
