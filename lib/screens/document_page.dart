@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'document_details_page.dart';
+import 'document_scan_page.dart';
 
 class DocumentsPage extends StatefulWidget {
   const DocumentsPage({super.key});
@@ -25,7 +26,14 @@ class _DocumentsPageState extends State<DocumentsPage> {
         'email': 'john.doe@example.com',
         'phone': '(555) 123-4567',
         'location': 'New York, NY',
-        'skills': ['React', 'TypeScript', 'Node.js', 'Next.js', 'GraphQL', 'AWS'],
+        'skills': [
+          'React',
+          'TypeScript',
+          'Node.js',
+          'Next.js',
+          'GraphQL',
+          'AWS'
+        ],
         'experience': [
           {
             'position': 'Senior Frontend Developer',
@@ -84,109 +92,115 @@ class _DocumentsPageState extends State<DocumentsPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-       actions: [
-  Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: ElevatedButton(
-      onPressed: () {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Container(
-                width: 400,
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Add New Document',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.close),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Upload a document or scan using your camera',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    const SizedBox(height: 24),
-                    InkWell(
-                      onTap: () {
-                      
-                      },
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                       child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 16,
-                          horizontal: 12,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          children: const [
-                            Icon(Icons.upload_file),
-                            SizedBox(width: 12),
-                            Text('Upload File'),
+                        width: 400,
+                        padding: const EdgeInsets.all(24),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Add New Document',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.close),
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            const Text(
+                              'Upload a document or scan using your camera',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                            const SizedBox(height: 24),
+                            InkWell(
+                              onTap: () {},
+                              child: Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 16,
+                                  horizontal: 12,
+                                ),
+                                decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey.shade300),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Row(
+                                  children: const [
+                                    Icon(Icons.upload_file),
+                                    SizedBox(width: 12),
+                                    Text('Upload File'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            InkWell(
+                              onTap: () {
+                                Navigator.pop(context); // Close the dialog
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DocumentScanPage()),
+                                );
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 16,
+                                  horizontal: 12,
+                                ),
+                                decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey.shade300),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Row(
+                                  children: const [
+                                    Icon(Icons.qr_code_scanner),
+                                    SizedBox(width: 12),
+                                    Text('Scan Document'),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                    InkWell(
-                      onTap: () {
-                        // Handle scan document
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 16,
-                          horizontal: 12,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          children: const [
-                            Icon(Icons.qr_code_scanner),
-                            SizedBox(width: 12),
-                            Text('Scan Document'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                    );
+                  },
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                foregroundColor: Colors.white,
               ),
-            );
-          },
-        );
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-      ),
-      child: const Text('Add Document'),
-    ),
-  ),
-],
+              child: const Text('Add Document'),
+            ),
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -208,7 +222,7 @@ class _DocumentsPageState extends State<DocumentsPage> {
               ),
             ),
           ),
-          
+
           // Documents List
           Expanded(
             child: ListView.builder(
